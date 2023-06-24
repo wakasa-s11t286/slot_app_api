@@ -62,4 +62,137 @@ def hello(name):
                     
     return name
 
+@app.route('/getchart/<chart>')
+def getchart(chart):
+
+    con = get_db()
+    cur = con.execute("select * from stand_data ")
+
+    base_value = 200
+
+    mobile_chart_list = chart.split(',')
+
+    result_list = []
+
+    for row in cur:
+        chart_list = row[9].split(',')
+        flg = False
+        for cnt, c in enumerate(mobile_chart_list):
+            #抽出する範囲を決定
+            start = int(c) + base_value
+            end = int(c) - base_value
+
+            if start > int(chart_list[cnt]) and end < int(chart_list[cnt]):
+                flg = True
+            else:
+                flg = False
+                break
+        
+        if flg:
+            result_list.append(row[9])
+    
+    if len(result_list) < 4:
+        base_value = 300
+        result_list = []
+
+        cur = con.execute("select * from stand_data ")
+
+        for row in cur:
+            chart_list = row[9].split(',')
+            flg = False
+            for cnt, c in enumerate(mobile_chart_list):
+                #抽出する範囲を決定
+                start = int(c) + base_value
+                end = int(c) - base_value
+
+                if start > int(chart_list[cnt]) and end < int(chart_list[cnt]):
+                    flg = True
+                else:
+                    flg = False
+                    break
+        
+            if flg:
+                result_list.append(row[9])
+    
+    if len(result_list) < 4:
+        base_value = 400
+        result_list = []
+
+        cur = con.execute("select * from stand_data ")
+
+        for row in cur:
+            chart_list = row[9].split(',')
+            flg = False
+            for cnt, c in enumerate(mobile_chart_list):
+                #抽出する範囲を決定
+                start = int(c) + base_value
+                end = int(c) - base_value
+
+                if start > int(chart_list[cnt]) and end < int(chart_list[cnt]):
+                    flg = True
+                else:
+                    flg = False
+                    break
+        
+            if flg:
+                result_list.append(row[9])
+
+    if len(result_list) < 4:
+        base_value = 500
+        result_list = []
+
+        cur = con.execute("select * from stand_data ")
+
+        for row in cur:
+            chart_list = row[9].split(',')
+            flg = False
+            for cnt, c in enumerate(mobile_chart_list):
+                #抽出する範囲を決定
+                start = int(c) + base_value
+                end = int(c) - base_value
+
+                if start > int(chart_list[cnt]) and end < int(chart_list[cnt]):
+                    flg = True
+                else:
+                    flg = False
+                    break
+        
+            if flg:
+                result_list.append(row[9])
+    
+    if len(result_list) < 4:
+        base_value = 800
+        result_list = []
+
+        cur = con.execute("select * from stand_data ")
+
+        for row in cur:
+            chart_list = row[9].split(',')
+            flg = False
+            for cnt, c in enumerate(mobile_chart_list):
+                #抽出する範囲を決定
+                start = int(c) + base_value
+                end = int(c) - base_value
+
+                if start > int(chart_list[cnt]) and end < int(chart_list[cnt]):
+                    flg = True
+                else:
+                    flg = False
+                    break
+        
+            if flg:
+                result_list.append(row[9])
+    
+    temp_list = []
+    for cnt, c in enumerate(result_list):
+        if cnt == 3:
+            break
+        temp_list.append(c)
+    
+    json_obj ={
+        "result":temp_list
+    }
+
+                    
+    return json_obj
 
