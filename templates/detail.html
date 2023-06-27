@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.jpg">
+
+  <title>スロアナモバイル</title>
+
+
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  <!-- Nucleo Icons -->
+  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <!-- CSS Files -->
+  <link id="pagestyle" href="../assets/css/material-dashboard.css?v=3.1.0" rel="stylesheet" />
+  <!-- Nepcha Analytics (nepcha.com) -->
+  <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
+  <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1"></script>
+  <!--datatables-->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+
+</head>
+
+
+<body class="g-sidenav-show  bg-gray-100">
+
+  <div id="loading" class="position-absolute top-0 start-0 w-100 h-100 d-none">
+    <div class="text-center position-absolute top-50 start-50 w-100 translate-middle">
+        <div class="spinner-border text-light" role="status">
+            <span class="sr-only"></span>
+        </div>
+    </div>
+</div>
+
+
+
+  <aside
+    class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark"
+    id="sidenav-main">
+
+    <div class="sidenav-header">
+      <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+        aria-hidden="true" id="iconSidenav"></i>
+      <a class="navbar-brand m-0" href="#">
+        <img src="../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
+        <span class="ms-1 font-weight-bold text-white">メニュー</span>
+      </a>
+    </div>
+
+    <hr class="horizontal light mt-0 mb-2">
+
+    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+
+        <li class="nav-item">
+          <a class="nav-link text-white " href="#">
+
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">dashboard</i>
+            </div>
+
+            <span class="nav-link-text ms-1">Dashboard</span>
+          </a>
+        </li>
+
+
+
+      </ul>
+    </div>
+
+
+  </aside>
+
+  <main class="main-content border-radius-lg ">
+    <!-- Navbar -->
+
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
+      data-scroll="true">
+      <div class="container-fluid py-1 px-3">
+
+        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+
+
+          </div>
+          <ul class="navbar-nav  justify-content-end">
+
+            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                </div>
+              </a>
+            </li>
+            <li class="nav-item px-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-body p-0">
+                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+
+
+
+    <div class="container-fluid py-4">
+
+
+      <div class="row">
+        <div class="col-lg-7 position-relative z-index-2">
+          <div class="card card-plain mb-4">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="d-flex flex-column h-100">
+                    <h2 class="font-weight-bolder mb-0">実践データ</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-lg-10 col-sm-10">
+          <div class="card  mb-2">
+            <div class="card-header p-3 pt-2">
+              <div class="pt-1">
+
+                <h5>実践データ一覧</h5>
+
+                <table id="foo-table" class="table table-bordered" style="margin: unset !important;">
+                    <thead>
+                      <tr>
+                          <th>日付</th>
+                          <th>総G数</th>
+                          <th>BIG回数</th>
+                          <th>REG回数</th>
+                          <th>チェリーBIG回数</th>
+                          <th>チェリーREG回数</th>
+                          <th>合算確立</th>
+                          <th>ぶどう</th>
+                          <th>チェリー</th>
+                      </tr>
+                  </thead> 
+                </table>
+  
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-10 col-sm-10">
+          <div class="card  mb-2">
+            <div class="card-header p-3 pt-2">
+              <div class="pt-1">
+
+                <h5>実践グラフ(直近10)</h5>
+                <div class="row">
+                    <canvas id="mychart1"></canvas>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-lg-10 col-sm-10">
+          <div class="card  mb-2">
+            <div class="card-header p-3 pt-2">
+              <div class="pt-1">
+
+                <h5>実践データ累計</h5>
+                <div class="row">
+                   <h6>　実践回数：　{{tot_cnt}}</h6><br>
+                   <h6>　　勝利数　：　{{tot_win}}</h6><br>
+                   <h6>　　敗北数　：　{{tot_lose}}</h6><br>
+                   <h6>　　累計差枚：　{{tot_output}}</h6><br>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+
+    <footer class="footer py-4  ">
+      <div class="container-fluid">
+        <div class="row align-items-center justify-content-lg-between">
+          <div class="col-lg-6 mb-lg-0 mb-4">
+            <div class="copyright text-center text-sm text-muted text-lg-start">
+              ©
+              <script>
+                document.write(new Date().getFullYear())
+              </script>,
+              made with by WAKA Class.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </footer>
+
+    </div>
+
+
+  </main>
+
+
+
+  <div class="fixed-plugin">
+    <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
+      <i class="material-icons py-2">settings</i>
+    </a>
+    <div class="card shadow-lg">
+      <div class="card-header pb-0 pt-3">
+        <div class="float-start">
+          <h5 class="mt-3 mb-0">設定</h5>
+          <p>各種設定メニュー</p>
+        </div>
+        <div class="float-end mt-4">
+          <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
+            <i class="material-icons">clear</i>
+          </button>
+        </div>
+        <!-- End Toggle Button -->
+      </div>
+      <hr class="horizontal dark my-1">
+      <div class="card-body pt-sm-3 pt-0">
+
+
+        <!--
+        <a class="btn bg-gradient-info w-100" 
+          href="#">SLACKへ通知</a>
+        -->
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  <!--   Core JS Files   -->
+  <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+
+
+
+
+
+
+
+
+
+  <script>
+
+    var device = ""
+    window.onload = function(){
+        // ページ読み込み時に実行したい処理
+        device = {{device|tojson}};
+    }
+
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+
+    $(document).ready(function() {
+
+        if(device == ""){
+            device = {{device|tojson}};
+        }
+
+        var build = "?device="+device
+       
+        var tbl = $('#foo-table').DataTable({
+            bInfo: true, //追加
+            bSort: true, //追加
+            processing: true,
+            // 横スクロールバーを有効にする (scrollXはtrueかfalseで有効無効を切り替えます)
+            scrollX: true,
+            
+            ajax: {
+                dataType: 'json',
+                url: '/datatable'+build,
+                method: 'get',
+                dataSrc : "ResultSet" //追加
+            },
+        columns: [
+            { data: 'date' },
+            { data: 'total' },
+            { data: 'big'},
+            { data: 'regular' },
+            { data: 'cbig'},
+            { data: 'cregular' },
+            { data: 'addup' },
+            { data: 'koyaku1' },
+            { data: 'koyaku2' }]
+        });
+    });
+
+    jQuery(function($){ 
+        // デフォルトの設定を変更
+        $.extend( $.fn.dataTable.defaults, { 
+            language: {
+                url: "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
+            } 
+        }); 
+        $("#foo-table").DataTable();
+        
+    
+    }); 
+
+
+    var myChart1;
+    var clabels = {{clabels|tojson}};
+    var cdata = {{cdata|tojson}};
+    var ccolor = {{ccolor|tojson}};
+    var ctitle = {{ctitle|tojson}};
+
+
+    createChart();
+    
+
+  function createChart(){
+    var dates = []
+
+    for (var i = 0; i < cdata.length; i++) {
+      var result ={
+        label: ctitle[i],
+        data: cdata[i],
+        borderColor: ccolor[i],
+        backgroundColor:ccolor[i],
+        type:"line"
+      }
+      dates.push(result)
+    }
+
+    if(myChart1){
+      myChart1.destroy(); //すでにグラフが存在すれば消す
+    }
+
+    var ctx = document.getElementById('mychart1');
+    myChart1 = new Chart(ctx, {
+      data: {
+        labels: clabels,
+        datasets: dates,
+      },
+      
+    });
+
+  }
+
+  </script>
+
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../assets/js/material-dashboard.min.js?v=3.1.0"></script>
+
+
+</body>
+
+</html>
+<style>
+.ps__thumb-x{
+  display:none !important;
+}
+</style>

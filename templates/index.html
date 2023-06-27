@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <title>スロットデータ分析</title>
+</head>
+<body>
+<p>管理者用</p>
+<form name="myform" action="/upload" method="POST" enctype="multipart/form-data">
+     <input type="file" name="file">
+    <!--<input type="submit" value='アップロード'>-->
+    <input type="hidden" value='' id="pw" name="pw">
+    <input type="button" value="アップロード" onclick="gate();">
+    <br>
+    <input type="button" value="実践データ削除" onclick="gate3();">
+    <br>
+    <input type="button" value="端末情報取得" onclick="gate2();">
+    <div id="device_list"></div>
+  </form>
+</body>
+</html>
+<script type="text/javascript">
+  function gate() {
+     var UserInput = prompt("パスワードを入力して下さい:","");
+     if(UserInput == null){
+      return
+
+     }
+     var hiddenItem = document.getElementById("pw")
+     hiddenItem.value = UserInput
+     //location.href = UserInput + ".html";
+     
+     document.myform.action="/upload";
+     document.myform.submit();
+  }
+
+  function gate2() {
+    var UserInput = prompt("パスワードを入力して下さい:","");
+    if(UserInput == null){
+     return
+
+    }
+    var hiddenItem = document.getElementById("pw")
+    hiddenItem.value = UserInput
+    //location.href = UserInput + ".html";
+    
+    document.myform.action="/getdevice";
+    document.myform.submit();
+ }
+
+ function gate3() {
+  var UserInput = prompt("削除するデバイスIDを入力してください","");
+  if(UserInput == null){
+   return
+
+  }
+  var hiddenItem = document.getElementById("pw")
+  hiddenItem.value = UserInput
+  //location.href = UserInput + ".html";
+  
+  document.myform.action="/deletedevice";
+  document.myform.submit();
+}
+
+ window.onload = function(){
+  // ページ読み込み時に実行したい処理
+  var param = {{result|tojson}};
+  if(param === null || param.length === 0){
+
+  }else{
+    var item = document.getElementById("device_list")
+    var text = ""
+    for (const elem of param) {
+      text += elem + ",   "
+    }
+    item.textContent = text
+  }
+  }
+ 
+
+
+</script>
