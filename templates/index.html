@@ -11,10 +11,15 @@
     <input type="hidden" value='' id="pw" name="pw">
     <input type="button" value="アップロード" onclick="gate();">
     <br>
+    <br>
     <input type="button" value="実践データ削除" onclick="gate3();">
     <br>
+    <br>
     <input type="button" value="端末情報取得" onclick="gate2();">
-    <div id="device_list"></div>
+    <br>
+    <ul id="device_list">
+
+    </ul>
   </form>
 </body>
 </html>
@@ -70,9 +75,19 @@
     var item = document.getElementById("device_list")
     var text = ""
     for (const elem of param) {
-      text += elem + ",   "
+      //text += elem + ",   "
+      // 新しいHTML要素を作成
+      let new_element = document.createElement('li');
+      let new_element2 = document.createElement('a');
+      new_element2.href = "/detail/"+elem
+      new_element2.textContent = elem
+      new_element.appendChild(new_element2);
+      // 指定した要素の中の末尾に挿入
+       item.appendChild(new_element);
     }
-    item.textContent = text
+    //item.textContent = text
+
+
   }
   }
  

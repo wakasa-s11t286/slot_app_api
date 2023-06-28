@@ -105,7 +105,8 @@ def getdevice():
             cur2 = con.execute("select * from device")
             for row2 in cur2:
                 if row2[0] != 0:
-                    result.append(row2[1])
+                    if row2[1] not in result:
+                        result.append(row2[1])
     
     return render_template("index.html", result=result)
 
